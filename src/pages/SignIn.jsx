@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +22,7 @@ export default function SignIn() {
 
   return (
     <section>
-      <h1 className="text-3xl text-center my-6 font-bold">SignIn</h1>
+      <h1 className="text-3xl text-center my-6 font-bold">Sign In</h1>
 
       <div className="flex justify-center flex-wrap items-center px-6 py-6 max-w-6xl mx-auto">
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
@@ -62,6 +64,37 @@ export default function SignIn() {
                 />
               )}
             </div>
+
+            <div className="flex justify-between text-sm sm:text-lg whitespace-nowrap">
+              <p>
+                Don't have an account?{" "}
+                <Link
+                  to="/sign-up"
+                  className="text-red-400 hover:text-red-600 transition duration-200 ease-linear"
+                >
+                  Register
+                </Link>{" "}
+              </p>
+              <Link
+                to="/forgot-password"
+                className="text-blue-500 hover:text-blue-700 transition duration-200 ease-linear"
+              >
+                Forgot Password?
+              </Link>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full my-6 bg-blue-600 text-white px-6 py-3 text-sm font-medium uppercase rounded-lg shadow-md hover:bg-blue-700 transition duration-200 ease-linear active:bg-blue-800"
+            >
+              Sign in
+            </button>
+
+            <div className="flex items-center before:border-t before:flex-1 before:border-gray-400 after:border-t after:flex-1 after:border-gray-400">
+              <p className="text-center font-semibold mx-4">OR</p>
+            </div>
+
+            <OAuth />
           </form>
         </div>
       </div>
