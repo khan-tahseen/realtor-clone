@@ -6,11 +6,11 @@ import OAuth from "../components/OAuth";
 export default function SignUn() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
+    name: "",
     email: "",
     password: "",
   });
-  const {name, email, password } = formData;
+  const { name, email, password } = formData;
 
   function onChange(event) {
     setFormData((prevState) => {
