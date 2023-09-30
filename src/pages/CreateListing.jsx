@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 export default function CreateListing() {
   const [formData, setFormData] = useState({
     type: 'rent',
+    name: '',
+    bedrooms: 1,
+    bathrooms: 1,
   });
-  const { type } = formData;
+  const { type, name, bedrooms, bathrooms } = formData;
 
   function onChange() {}
   return (
@@ -12,7 +15,7 @@ export default function CreateListing() {
       <h1 className="text-3xl text-center font-bold mt-6">Create a Listing</h1>
       <form>
         <p className="text-lg font-semibold mt-6">Sell/Rent</p>
-        <div className="flex mt-2">
+        <div className="flex">
           <button
             type="button"
             id="type"
@@ -35,6 +38,38 @@ export default function CreateListing() {
           >
             rent
           </button>
+        </div>
+        <p className="text-lg font-semibold mt-6">Name</p>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={onChange}
+          placeholder="Name"
+          maxLength={32}
+          minLength={10}
+          required
+          className="w-full px-6 py-3 text-lg text-gray-600 bg-white border border-gray-300 rounded-lg transition duration-200 ease-linear hover:shadow-lg focus:border-slate-600"
+        />
+        <div className="flex mt-6">
+          <div className="">
+            <p className="text-lg font-semibold">Beds</p>
+            <input
+              type="number"
+              id="bedrooms"
+              value={bedrooms}
+              onChange={onChange}
+            />
+          </div>
+          <div className="">
+            <p className="text-lg font-semibold">Bath</p>
+            <input
+              type="number"
+              id="bathrooms"
+              value={bathrooms}
+              onChange={onChange}
+            />
+          </div>
         </div>
       </form>
     </main>
