@@ -1,6 +1,9 @@
-import { getAuth } from 'firebase/auth';
+import { getAuth, updateProfile } from 'firebase/auth';
+import { doc, updateDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import { db } from '../firebase';
 
 export default function Profile() {
   const navigation = useNavigate();
@@ -17,8 +20,22 @@ export default function Profile() {
     navigation('/');
   }
 
-  function onSubmit() {
-    
+  async function onSubmit() {
+    try {
+      if (auth.currentUser.displayName !== name) {
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+        });
+      }
+
+      // Update name in the firestore
+      const docRef = doc(db, 'users', auth.currentUser.uid);
+      await updateDoc(docRef, { name });
+      toast.success('Profile updated successfully')
+    } catch (error) {
+      console.log('error while updating profile', error);
+      toast.error('Could not update profile');
+    }
   }
 
   function handleChangeText() {
@@ -47,7 +64,9 @@ export default function Profile() {
               value={name}
               disabled={!changeDetails}
               onChange={onChangeHandler}
-              className="w-full py-2 px-4 text-xl mb-6 rounded-lg"
+              className={`w-full py-2 px-4 text-xl mb-6 rounded-lg ${
+                changeDetails && 'bg-red-200 focus:bg-red-200'
+              }`}
             />
             <input
               type="email"
