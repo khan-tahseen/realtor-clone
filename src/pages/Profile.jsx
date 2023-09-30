@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { db } from '../firebase';
+import { FcHome } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const navigation = useNavigate();
@@ -31,7 +33,7 @@ export default function Profile() {
       // Update name in the firestore
       const docRef = doc(db, 'users', auth.currentUser.uid);
       await updateDoc(docRef, { name });
-      toast.success('Profile updated successfully')
+      toast.success('Profile updated successfully');
     } catch (error) {
       console.log('error while updating profile', error);
       toast.error('Could not update profile');
@@ -95,6 +97,18 @@ export default function Profile() {
               </p>
             </div>
           </form>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white uppercase px-6 py-3 text-sm font-medium rounded-lg shadow-md hover:bg-blue-600 transition duration-150 ease-linear active:bg-blue-700"
+          >
+            <Link
+              to="/create-listing"
+              className="flex justify-center items-center"
+            >
+              <FcHome className="mr-2 text-3xl rounded-full bg-red-200 p-1" />
+              Sell or rent your home
+            </Link>
+          </button>
         </div>
       </section>
     </React.Fragment>
