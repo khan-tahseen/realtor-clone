@@ -1,13 +1,20 @@
 import { getAuth } from 'firebase/auth'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router';
 
 export default function Profile() {
+  const navigation = useNavigate();
   const auth = getAuth();
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
     email: auth.currentUser.email,
   })
   const {name, email} = formData
+
+  function handleLogout() {
+    auth.signOut();
+    navigation('/')
+  }
 
   return (
     <React.Fragment>
@@ -21,7 +28,7 @@ export default function Profile() {
             <div className='flex justify-between whitespace-nowrap text-sm sm:text-lg mb-6'>
               <p className='flex items-center'>Do you want to change your name?
               <span className='text-red-500 hover:text-red-600 cursor-pointer transition ease-linear duration-200 ml-1'>Edit</span></p>
-              <p className='text-blue-500 hover:text-blue-600 transition ease-linear duration-200 cursor-pointer'>Sign out</p>
+              <p onClick={handleLogout} className='text-blue-500 hover:text-blue-600 transition ease-linear duration-200 cursor-pointer'>Sign out</p>
             </div>
           </form>
         </div>
