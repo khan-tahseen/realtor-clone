@@ -11,7 +11,7 @@ export default function CreateListing() {
     address: '',
     description: '',
     offer: false,
-    regularPrice: '100',
+    regularPrice: '1000',
     discountedPrice: '0',
   });
   const {
