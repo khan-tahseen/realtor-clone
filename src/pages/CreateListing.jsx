@@ -8,8 +8,19 @@ export default function CreateListing() {
     bathrooms: 1,
     parking: false,
     furnished: false,
+    address: '',
+    description: '',
   });
-  const { type, name, bedrooms, bathrooms, parking, furnished } = formData;
+  const {
+    type,
+    name,
+    bedrooms,
+    bathrooms,
+    parking,
+    furnished,
+    address,
+    description,
+  } = formData;
 
   function onChange() {}
   return (
@@ -41,6 +52,7 @@ export default function CreateListing() {
             rent
           </button>
         </div>
+
         <p className="text-lg font-semibold mt-6">Name</p>
         <input
           type="text"
@@ -53,6 +65,7 @@ export default function CreateListing() {
           required
           className="w-full px-6 py-3 text-lg text-gray-600 bg-white border border-gray-300 rounded-lg transition duration-200 ease-linear hover:shadow-lg focus:border-slate-600"
         />
+
         <div className="flex mt-6 space-x-6">
           <div>
             <p className="text-lg font-semibold">Beds</p>
@@ -79,6 +92,7 @@ export default function CreateListing() {
             />
           </div>
         </div>
+
         <p className="text-lg font-semibold mt-6">Parking spot</p>
         <div className="flex">
           <button
@@ -104,6 +118,7 @@ export default function CreateListing() {
             No
           </button>
         </div>
+
         <p className="text-lg font-semibold mt-6">Furnished</p>
         <div className="flex">
           <button
@@ -129,6 +144,28 @@ export default function CreateListing() {
             No
           </button>
         </div>
+
+        <p className="text-lg font-semibold mt-6">Address</p>
+        <textarea
+          type="text"
+          id="address"
+          value={address}
+          onChange={onChange}
+          placeholder="Address"
+          required
+          className="w-full px-6 py-3 text-lg text-gray-600 bg-white border border-gray-300 rounded-lg transition duration-200 ease-linear hover:shadow-lg focus:border-slate-600"
+        />
+
+        <p className="text-lg font-semibold mt-6">Description</p>
+        <textarea
+          type="text"
+          id="description"
+          value={description}
+          onChange={onChange}
+          placeholder="Description"
+          required
+          className="w-full px-6 py-3 text-lg text-gray-600 bg-white border border-gray-300 rounded-lg transition duration-200 ease-linear hover:shadow-lg focus:border-slate-600"
+        />
       </form>
     </main>
   );
