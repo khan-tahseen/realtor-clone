@@ -6,8 +6,10 @@ export default function CreateListing() {
     name: '',
     bedrooms: 1,
     bathrooms: 1,
+    parking: false,
+    furnished: false,
   });
-  const { type, name, bedrooms, bathrooms } = formData;
+  const { type, name, bedrooms, bathrooms, parking, furnished } = formData;
 
   function onChange() {}
   return (
@@ -77,54 +79,54 @@ export default function CreateListing() {
             />
           </div>
         </div>
-        <p className="text-lg font-semibold mt-6">Sell/Rent</p>
+        <p className="text-lg font-semibold mt-6">Parking spot</p>
         <div className="flex">
           <button
             type="button"
-            id="type"
-            value="sale"
+            id="parking"
+            value={parking}
             onClick={onChange}
             className={`mr-2 px-6 py-3 uppercase font-medium text-sm shadow-sm rounded-lg hover:shadow-lg focus:shadow-lg transition duration-200 ease-linear w-full ${
-              type === 'sale' ? 'bg-white' : 'bg-slate-500 text-white'
+              !parking ? 'bg-white' : 'bg-slate-500 text-white'
             }`}
           >
-            sell
+            Yes
           </button>
           <button
             type="button"
-            id="type"
-            value="rent"
+            id="parking"
+            value={parking}
             onClick={onChange}
             className={`ml-2 px-6 py-3 uppercase font-medium text-sm shadow-sm rounded-lg hover:shadow-lg focus:shadow-lg transition duration-200 ease-linear w-full ${
-              type === 'rent' ? 'bg-white' : 'bg-slate-500 text-white'
+              parking ? 'bg-white' : 'bg-slate-500 text-white'
             }`}
           >
-            rent
+            No
           </button>
         </div>
-        <p className="text-lg font-semibold mt-6">Sell/Rent</p>
+        <p className="text-lg font-semibold mt-6">Furnished</p>
         <div className="flex">
           <button
             type="button"
-            id="type"
-            value="sale"
+            id="furnished"
+            value={furnished}
             onClick={onChange}
             className={`mr-2 px-6 py-3 uppercase font-medium text-sm shadow-sm rounded-lg hover:shadow-lg focus:shadow-lg transition duration-200 ease-linear w-full ${
-              type === 'sale' ? 'bg-white' : 'bg-slate-500 text-white'
+              !furnished ? 'bg-white' : 'bg-slate-500 text-white'
             }`}
           >
-            sell
+            Yes
           </button>
           <button
             type="button"
-            id="type"
-            value="rent"
+            id="furnished"
+            value={furnished}
             onClick={onChange}
             className={`ml-2 px-6 py-3 uppercase font-medium text-sm shadow-sm rounded-lg hover:shadow-lg focus:shadow-lg transition duration-200 ease-linear w-full ${
-              type === 'rent' ? 'bg-white' : 'bg-slate-500 text-white'
+              furnished ? 'bg-white' : 'bg-slate-500 text-white'
             }`}
           >
-            rent
+            No
           </button>
         </div>
       </form>
