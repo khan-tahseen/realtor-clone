@@ -11,6 +11,8 @@ export default function CreateListing() {
     address: '',
     description: '',
     offer: false,
+    regularPrice: '100',
+    discountedPrice: '0',
   });
   const {
     type,
@@ -21,7 +23,9 @@ export default function CreateListing() {
     furnished,
     address,
     description,
-    offer
+    offer,
+    regularPrice,
+    discountedPrice,
   } = formData;
 
   function onChange() {}
@@ -194,6 +198,74 @@ export default function CreateListing() {
             No
           </button>
         </div>
+
+        <div className="flex items-center">
+          <div className="mt-6">
+            <p className="text-lg font-semibold">Regular Price</p>
+            <div className="flex w-80 justify-center items-center">
+              <input
+                type="number"
+                id="regularPrice"
+                value={regularPrice}
+                onChange={onChange}
+                min={50}
+                max={100000}
+                required
+                className="w-80 px-4 py-2 text-lg text-gray-600 bg-white border border-gray-300 rounded-lg transition duration-200 ease-linear hover:shadow-lg focus:border-slate-600"
+              />
+              {type === 'rent' && (
+                <div className="text-md w-full whitespace-nowrap ml-4">
+                  <p>$ / month</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {offer && (
+          <div className="flex items-center">
+            <div className="mt-6">
+              <p className="text-lg font-semibold">Discounted Price</p>
+              <div className="flex w-80 justify-center items-center">
+                <input
+                  type="number"
+                  id="discountedPrice"
+                  value={discountedPrice}
+                  onChange={onChange}
+                  min={50}
+                  max={100000}
+                  required={offer}
+                  className="w-80 px-4 py-2 text-lg text-gray-600 bg-white border border-gray-300 rounded-lg transition duration-200 ease-linear hover:shadow-lg focus:border-slate-600"
+                />
+                {type === 'rent' && (
+                  <div className="text-md w-full whitespace-nowrap ml-4">
+                    <p>$ / month</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="mt-6">
+          <p className="text-lg font-semibold">Images</p>
+          <p className="text-gray-600">The Image will be the cover (max 6)</p>
+          <input
+            type="file"
+            id="images"
+            onChange={onChange}
+            accept=".jpg, .png, .jpeg"
+            multiple
+            required
+            className="w-full px-6 py-3 text-lg text-gray-600 bg-white border border-gray-300 rounded-lg transition duration-200 ease-linear hover:shadow-lg focus:border-slate-600"
+          />
+        </div>
+        <button
+          type="submit"
+          className="my -8 w-full bg-blue-500 text-white uppercase px-6 py-3 text-sm font-medium rounded-lg shadow-md hover:bg-blue-600 transition duration-150 ease-linear active:bg-blue-700"
+        >
+          Create Listing
+        </button>
       </form>
     </main>
   );
