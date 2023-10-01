@@ -10,6 +10,7 @@ export default function CreateListing() {
     furnished: false,
     address: '',
     description: '',
+    offer: false,
   });
   const {
     type,
@@ -20,6 +21,7 @@ export default function CreateListing() {
     furnished,
     address,
     description,
+    offer
   } = formData;
 
   function onChange() {}
@@ -166,6 +168,32 @@ export default function CreateListing() {
           required
           className="w-full px-6 py-3 text-lg text-gray-600 bg-white border border-gray-300 rounded-lg transition duration-200 ease-linear hover:shadow-lg focus:border-slate-600"
         />
+
+        <p className="text-lg font-semibold mt-6">Offer</p>
+        <div className="flex">
+          <button
+            type="button"
+            id="offer"
+            value={offer}
+            onClick={onChange}
+            className={`mr-2 px-6 py-3 uppercase font-medium text-sm shadow-sm rounded-lg hover:shadow-lg focus:shadow-lg transition duration-200 ease-linear w-full ${
+              !offer ? 'bg-white' : 'bg-slate-500 text-white'
+            }`}
+          >
+            Yes
+          </button>
+          <button
+            type="button"
+            id="offer"
+            value={offer}
+            onClick={onChange}
+            className={`ml-2 px-6 py-3 uppercase font-medium text-sm shadow-sm rounded-lg hover:shadow-lg focus:shadow-lg transition duration-200 ease-linear w-full ${
+              offer ? 'bg-white' : 'bg-slate-500 text-white'
+            }`}
+          >
+            No
+          </button>
+        </div>
       </form>
     </main>
   );
